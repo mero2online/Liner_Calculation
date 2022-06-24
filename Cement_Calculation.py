@@ -151,10 +151,10 @@ saveStatus.place(x=570, y=5, width=270, height=225)
 calculateBtn = Button(root, text="Calculate", background='#06283D',
                       foreground='#DFF6FF', borderwidth=2, relief="groove",
                       padx=5, pady=5, command=getInput)
-calculateBtn.place(x=325, y=600, width=200, height=35)
+calculateBtn.place(x=325, y=530, width=200, height=35)
 
 root.title('Cement_Calculation')
-root.geometry('850x640')
+root.geometry('850x575')
 root.configure(bg='#000')
 
 root.resizable(False, False)
