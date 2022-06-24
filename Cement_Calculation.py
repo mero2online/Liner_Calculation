@@ -2,6 +2,7 @@ from tkinter import *
 import os
 import sys
 import datetime
+from Calculation import makeCalculation
 from Options import options, varArr, myLabel, csg
 
 try:
@@ -67,13 +68,8 @@ def getInput():
         else:
             values.append(float(v.get()))
     saveConfig(values)
-    Liner1 = values[0]
-    Liner1_Grade_ID = values[1]
-
-    match = [i for i in csg[Liner1] if i['grd'] == Liner1_Grade_ID]
-    print(match[0])
-    saveStatusVar.set(f'''Result: {Liner1}
-ResultTwo: {Liner1_Grade_ID}''')
+    calcResult = makeCalculation(values)
+    saveStatusVar.set(calcResult)
     return values
 
 
@@ -150,7 +146,7 @@ saveStatusVar.set('Started')
 
 saveStatus = Label(root, textvariable=saveStatusVar,
                    background='#06283D', foreground='#DFF6FF')
-saveStatus.place(x=10, y=520, width=830, height=70)
+saveStatus.place(x=570, y=5, width=270, height=225)
 
 calculateBtn = Button(root, text="Calculate", background='#06283D',
                       foreground='#DFF6FF', borderwidth=2, relief="groove",
