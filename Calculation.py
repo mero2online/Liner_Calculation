@@ -4,7 +4,7 @@ from Options import *
 def makeCalculation(values):
     Liner1, Liner1_Grade_ID, Liner2, Liner2_Grade_ID, *o1 = values
     Last_CSG_OD, Last_CSG_Grade_ID, OH, HW_OD, DP_OD, Length_of_HWDP, *o2 = o1
-    TOL, Last_CSG_FS, FS, Shoe_track, Top_Cement_above_TOL, *o3 = o2
+    TOL,TOL_TVD, Last_CSG_FS, FS, Shoe_track, Top_Cement_above_TOL, *o3 = o2
     Mud_Weight, Excess_OH, Excess_Cased_Hole, *o4 = o3
     Additional_OH_Vol, Cement_Behind_Plug, *o5 = o4
     Dead_Volume, Tail_Slurry_Yield, Tail_Mix_Water, *o6 = o5
@@ -73,6 +73,9 @@ def makeCalculation(values):
     # Bouncy
     Bouncy = (65.4-Mud_Weight_PPG)/65.4
 
+    # DP Stretch
+    DP_Stretch = (100*(TOL_TVD/1000)*dpData[DP_OD]['const'])/12
+
     resultTxt = f'''
 Tail_Sacks_Needed: {int(Tail_Sacks_Needed_sx)} sx
 Lead_Sacks_Needed: {int(Lead_Sacks_Needed_sx)} sx
@@ -81,6 +84,7 @@ Vol_Liner_TOL_Shoe_Track: {int(Vol_Liner_TOL_Shoe_Track)} BBL
 Total_Displacement: {int(Total_Displacement)} BBL
 Displacement_Mud: {int(Displacement_Mud)} BBL
 Bouncy: {"{:.2f}".format(Bouncy)}
+DP_Stretch: {"{:.2f}".format(DP_Stretch)}
 '''
 
     return resultTxt

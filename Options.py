@@ -10,6 +10,7 @@ myLabel = [
     "DP OD: INCH",
     "Length of HWDP: FT",
     "TOL: FT",
+    "TOL_TVD: FT",
     "Last CSG FS: FT",
     "FS: FT",
     "Shoe track: FT",
@@ -38,6 +39,7 @@ varArr = [
     "DP_OD",
     "Length_of_HWDP",
     "TOL",
+    "TOL_TVD",
     "Last_CSG_FS",
     "FS",
     "Shoe_track",
@@ -206,28 +208,32 @@ dpData = {
         'od': 3.5,
         'thr': '3-1/5 IF',
         'cap': 0.00742,
-        'wt': 13.3
+        'wt': 13.3,
+        'const': 0.12
     },
     '5': {
         'id': 4.276,
         'od': 5,
         'thr': '4-1/5 IF',
         'cap': 0.01776,
-        'wt': 19.5
+        'wt': 19.5,
+        'const': 0.09
     },
     '4': {
         'id': 3.34,
         'od': 4,
         'thr': 'XT-39',
         'cap': 0.0108,
-        'wt': 14
+        'wt': 14,
+        'const': 0.11
     },
     '5-1/2': {
         'id': 4.67,
         'od': 5.5,
         'thr': 'XT-54',
         'cap': 0.0212,
-        'wt': 24.7
+        'wt': 24.7,
+        'const': 0.08
     },
 }
 ohData = {
