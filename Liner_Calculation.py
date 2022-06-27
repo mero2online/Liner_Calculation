@@ -181,6 +181,6 @@ root.configure(bg='#000')
 
 root.resizable(False, False)
 # Setting icon of master window
-# root.iconbitmap(resource_path('Liner_Calculation.ico'))
+root.iconbitmap(resource_path('Liner_Calculation.ico'))
 # Start program
 root.mainloop()
