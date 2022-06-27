@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import os
 import sys
 import datetime
@@ -41,7 +42,7 @@ def writeLocalFile(filename, txt):
 
 
 def getCSVData():
-    text = readLocalFile(f'Cement_Calc_Config.csv')
+    text = readLocalFile(f'Liner_Calc_Config.csv')
 
     result = []
 
@@ -57,19 +58,38 @@ def saveConfig(values):
         arr.append(f'{varArr[idx]},{v}')
 
     txt = '\n'.join(arr)
-    writeLocalFile(f'Cement_Calc_Config.csv', txt)
+    writeLocalFile(f'Liner_Calc_Config.csv', txt)
 
 
 def getInput():
     values = []
     for i, v in enumerate(myVars):
+        if (i not in [2, 3, 7, 9, 10]) and v.get() == '':
+            messagebox.showerror(
+                'Error', f'This field [{myLabel[i]}] cant be empty')
+            return
         if i <= 8:
             values.append(v.get())
         else:
+            if v.get() == '':
+                v.set(0)
             values.append(float(v.get()))
     saveConfig(values)
     calcResult = makeCalculation(values)
-    saveStatusVar.set(calcResult)
+    for i, x in enumerate(calcResult.keys()):
+        l = Label(root, text=x, background='#06283D', foreground='#EC994B')
+        xPlace = 10 if i <= 2 else 290
+        yPlace = (i*40)+505 if i <= 2 else (i*40)+385
+        l.place(x=xPlace, y=yPlace, width=160, height=35)
+        e = Entry(root, background='#06283D', justify=CENTER,
+                  foreground='#EC994B', font=('Arial', 16, 'bold'))
+        xPlace = 180 if i <= 2 else 460
+        e.place(x=xPlace, y=yPlace, width=100, height=35)
+        e.insert(END, calcResult[x])
+        myResultsLabelsEntry.append(l)
+        myResultsLabelsEntry.append(e)
+
+    saveStatusVar.set('Result')
     return values
 
 
@@ -90,21 +110,24 @@ def updateOptions(i, var):
 
 def clearSaveStatusVar(saveStatusVar):
     saveStatusVar.set('')
+    for x in myResultsLabelsEntry:
+        x.destroy()
 
 ########""" GUI """########
 
 
 root = Tk()
 saveStatusVar = StringVar(root, '')
+global myResultsLabelsEntry
+myResultsLabelsEntry = []
 
 myVars = []
 myEntry = []
 for i in range(len(varArr)):
     label = Label(root, text=myLabel[i],
                   background='#06283D', foreground='#DFF6FF')
-    xPlace = 10 if i <= 5 else (10 if i <= 12 else (290 if i <= 19 else 570))
-    yPlace = i*40 if i <= 5 else (i*40 if i <=
-                                  12 else ((i-7)*40 if i <= 19 else (i-14)*40))
+    xPlace = 10 if i <= 5 else (10 if i <= 11 else 290)
+    yPlace = i*40 if i <= 5 else (i*40 if i <= 11 else (i-6)*40)
     label.place(x=xPlace, y=yPlace, width=160, height=35)
 
     var = StringVar(root, value='')
@@ -121,8 +144,7 @@ for i in range(len(varArr)):
                       relief="ridge", font=('Arial', 12, 'bold'))
     myEntry.append(entry)
 
-    xPlace = 180 if i <= 5 else (180 if i <= 12 else (460 if i <= 19 else 740))
-    # yPlace = i*40 if i <= 10 else (i-11)*40
+    xPlace = 180 if i <= 5 else (180 if i <= 11 else 460)
     wPlace = 380 if i <= 5 else 100
     entry.place(x=xPlace, y=yPlace, width=wPlace, height=35)
 
@@ -134,7 +156,7 @@ for i in range(len(varArr)):
                   sv=saveStatusVar: clearSaveStatusVar(sv))
 
 result = getCSVData() if os.path.exists(
-    'Cement_Calc_Config.csv') else ['' for i in range(len(varArr))]
+    'Liner_Calc_Config.csv') else ['' for i in range(len(varArr))]
 
 for i, v in enumerate(myVars):
     if (i == 0 or i == 2 or i == 4) and result[i] == '':
@@ -146,19 +168,19 @@ saveStatusVar.set('Started')
 
 saveStatus = Label(root, textvariable=saveStatusVar,
                    background='#06283D', foreground='#DFF6FF')
-saveStatus.place(x=570, y=5, width=270, height=225)
+saveStatus.place(x=10, y=480, width=550, height=20)
 
 calculateBtn = Button(root, text="Calculate", background='#06283D',
                       foreground='#DFF6FF', borderwidth=2, relief="groove",
                       padx=5, pady=5, command=getInput)
-calculateBtn.place(x=325, y=530, width=200, height=35)
+calculateBtn.place(x=190, y=630, width=200, height=35)
 
-root.title('Cement_Calculation')
-root.geometry('850x575')
+root.title('Liner_Calculation')
+root.geometry('570x670')
 root.configure(bg='#000')
 
 root.resizable(False, False)
 # Setting icon of master window
-# root.iconbitmap(resource_path('Cement_Calculation.ico'))
+# root.iconbitmap(resource_path('Liner_Calculation.ico'))
 # Start program
 root.mainloop()
