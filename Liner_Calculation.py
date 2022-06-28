@@ -79,12 +79,12 @@ def getInput():
     for i, x in enumerate(calcResult.keys()):
         l = Label(root, text=x, background='#06283D', foreground='#EC994B')
         xPlace = 10 if i <= 2 else 290
-        yPlace = (i*40)+505 if i <= 2 else (i*40)+385
-        l.place(x=xPlace, y=yPlace, width=160, height=35)
+        yPlace = (i*30)+505 if i <= 2 else (i*30)+415
+        l.place(x=xPlace, y=yPlace, width=160, height=25)
         e = Entry(root, background='#06283D', justify=CENTER,
-                  foreground='#EC994B', font=('Arial', 16, 'bold'))
+                  foreground='#EC994B', font=('Arial', 15, 'bold'))
         xPlace = 180 if i <= 2 else 460
-        e.place(x=xPlace, y=yPlace, width=100, height=35)
+        e.place(x=xPlace, y=yPlace, width=100, height=25)
         e.insert(END, calcResult[x])
         myResultsLabelsEntry.append(l)
         myResultsLabelsEntry.append(e)
@@ -171,12 +171,12 @@ saveStatus = Label(root, textvariable=saveStatusVar,
 saveStatus.place(x=10, y=480, width=550, height=20)
 
 calculateBtn = Button(root, text="Calculate", background='#06283D',
-                      foreground='#DFF6FF', borderwidth=2, relief="groove",
+                      foreground='#EC994B', borderwidth=2, relief="groove",
                       padx=5, pady=5, command=getInput)
-calculateBtn.place(x=190, y=630, width=200, height=35)
+calculateBtn.place(x=290, y=440, width=270, height=35)
 
 root.title('Liner_Calculation')
-root.geometry('570x670')
+root.geometry('570x600')
 root.configure(bg='#000')
 
 root.resizable(False, False)
