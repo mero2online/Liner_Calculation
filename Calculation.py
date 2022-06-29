@@ -28,6 +28,8 @@ def makeCalculation(values):
         ((Shoe_Track_Depth-TOL)-Length_of_Liner2)*Liner1_Match[0]['cap'])+(Length_of_Liner2*Liner2_Match[0]['cap'])
     #
     Total_Displacement = DP_Vol + Liner_Vol
+    #
+    Anulus_OH_Vol = Anulus_OH * ((FS+3) - Last_CSG_FS)
 
     # Bouncy
     Bouncy = (65.4-Mud_Weight_PPG)/65.4
@@ -39,6 +41,7 @@ def makeCalculation(values):
         "DP Vol: BBL": int(DP_Vol),
         "Liner Vol: BBL": int(Liner_Vol),
         "Total Displacement: BBL": int(Total_Displacement),
+        "Anulus OH Vol: BBL": "{:.2f}".format(Anulus_OH_Vol),
         "Bouncy": "{:.2f}".format(Bouncy),
         "DP Stretch: FT": "{:.2f}".format(DP_Stretch)
     }
