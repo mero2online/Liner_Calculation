@@ -22,7 +22,8 @@ def makeCalculation(values):
     Mud_Weight_PPG = Mud_Weight/7.48
 
     # Displacement
-    DP_Vol = Length_DP*dpData[DP_OD]['cap']+Length_of_HWDP*hwData[HW_OD]['cap']
+    DP_Vol = (Length_DP*dpData[DP_OD]['cap']) + \
+        (Length_of_HWDP*hwData[HW_OD]['cap'])
     #
     Liner_Vol = (
         ((Shoe_Track_Depth-TOL)-Length_of_Liner2)*Liner1_Match[0]['cap'])+(Length_of_Liner2*Liner2_Match[0]['cap'])
@@ -34,6 +35,10 @@ def makeCalculation(values):
     # Bouncy
     Bouncy = (65.4-Mud_Weight_PPG)/65.4
 
+    # Total Weight
+    Total_Weight = (((Shoe_Track_Depth-TOL)-Length_of_Liner2)*Liner1_Match[0]['wt'])+(
+        Length_of_Liner2*Liner2_Match[0]['wt'])+((Length_DP*dpData[DP_OD]['wt'])+(Length_of_HWDP*hwData[HW_OD]['wt']))*Bouncy
+
     # DP Stretch
     DP_Stretch = (100*(TOL_TVD/1000)*dpData[DP_OD]['const'])/12
 
@@ -42,6 +47,7 @@ def makeCalculation(values):
         "Liner Vol: BBL": int(Liner_Vol),
         "Total Displacement: BBL": int(Total_Displacement),
         "Anulus OH Vol: BBL": "{:.2f}".format(Anulus_OH_Vol),
+        "Total Weight: LBS": "{:.0f}".format(Total_Weight),
         "Bouncy": "{:.2f}".format(Bouncy),
         "DP Stretch: FT": "{:.2f}".format(DP_Stretch)
     }

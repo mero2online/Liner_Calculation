@@ -78,12 +78,12 @@ def getInput():
     calcResult = makeCalculation(values)
     for i, x in enumerate(calcResult.keys()):
         l = Label(root, text=x, background='#06283D', foreground='#EC994B')
-        xPlace = 10 if i <= 2 else 290
-        yPlace = (i*30)+505 if i <= 2 else (i*30)+415
+        xPlace = 10 if i <= 3 else 290
+        yPlace = (i*30)+505 if i <= 3 else (i*30)+385
         l.place(x=xPlace, y=yPlace, width=160, height=25)
         e = Entry(root, background='#06283D', justify=CENTER,
                   foreground='#EC994B', font=('Arial', 15, 'bold'))
-        xPlace = 180 if i <= 2 else 460
+        xPlace = 180 if i <= 3 else 460
         e.place(x=xPlace, y=yPlace, width=100, height=25)
         e.insert(END, calcResult[x])
         myResultsLabelsEntry.append(l)
@@ -176,7 +176,7 @@ calculateBtn = Button(root, text="Calculate", background='#06283D',
 calculateBtn.place(x=290, y=440, width=270, height=35)
 
 root.title('Liner_Calculation')
-root.geometry('570x600')
+root.geometry('570x630')
 root.configure(bg='#000')
 
 root.resizable(False, False)
