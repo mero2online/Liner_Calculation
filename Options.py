@@ -11,7 +11,7 @@ myLabel = [
     "Length of Liner2: FT",
     "Length of HWDP: FT",
     "TOL: FT",
-    "TOL_TVD: FT",
+    "TOL TVD: FT",
     "Last CSG FS: FT",
     "Float Shoe: FT",
     "Shoe track: FT",

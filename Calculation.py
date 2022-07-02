@@ -38,6 +38,9 @@ def makeCalculation(values):
     Anulus_CSG_HW_Vol = Anulus_HW_Csg * Length_of_HWDP
     BTM_UP_TD = Anulus_OH_Vol+Anulus_CSG_DP_Vol+Anulus_CSG_HW_Vol
 
+    LH1_Opt_TRQ = Liner1_Match[0]['trq']
+    LH2_Opt_TRQ = Liner2_Match[0]['trq']
+
     # Bouncy
     Bouncy = (65.4-Mud_Weight_PPG)/65.4
 
@@ -59,11 +62,13 @@ def makeCalculation(values):
         "Total Displacement: BBL": int(Total_Displacement),
         "Anulus OH Vol: BBL": "{:.0f}".format(Anulus_OH_Vol),
         "BTM UP @ TD: BBL": "{:.0f}".format(BTM_UP_TD),
+        "DP Stretch: FT": "{:.2f}".format(DP_Stretch),
+        "LH1 Opt.TRQ: LBS/FT": "{:.2f}".format(LH1_Opt_TRQ),
+        "LH2 Opt.TRQ: LBS/FT": "{:.2f}".format(LH2_Opt_TRQ),
         "Liner Weight: LBS": "{:.0f}".format(Liner_Weight),
         "DP Weight: LBS": "{:.0f}".format(DP_Weight),
         "Total Weight: LBS": "{:.0f}".format(Total_Weight),
         "Bouncy": "{:.2f}".format(Bouncy),
-        "DP Stretch: FT": "{:.2f}".format(DP_Stretch)
     }
 
     return result
