@@ -175,8 +175,12 @@ calculateBtn = Button(root, text="Calculate", background='#06283D',
                       padx=5, pady=5, command=getInput)
 calculateBtn.place(x=290, y=385, width=270, height=30)
 
+made = Label(root, text='Abdulrahman Alshateri',
+                   background='#06283D', foreground='#DFF6FF')
+made.place(x=10, y=595, width=550, height=20)
+
 root.title('Liner_Calculation')
-root.geometry('570x600')
+root.geometry('570x615')
 root.configure(bg='#000')
 
 root.resizable(False, False)
