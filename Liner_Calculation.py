@@ -78,12 +78,12 @@ def getInput():
     calcResult = makeCalculation(values)
     for i, x in enumerate(calcResult.keys()):
         l = Label(root, text=x, background='#06283D', foreground='#EC994B')
-        xPlace = 10 if i <= 3 else 290
-        yPlace = (i*30)+505 if i <= 3 else (i*30)+385
+        xPlace = 10 if i <= 4 else 290
+        yPlace = (i*30)+445 if i <= 4 else (i*30)+295
         l.place(x=xPlace, y=yPlace, width=160, height=25)
         e = Entry(root, background='#06283D', justify=CENTER,
                   foreground='#EC994B', font=('Arial', 15, 'bold'))
-        xPlace = 180 if i <= 3 else 460
+        xPlace = 180 if i <= 4 else 460
         e.place(x=xPlace, y=yPlace, width=100, height=25)
         e.insert(END, calcResult[x])
         myResultsLabelsEntry.append(l)
@@ -127,8 +127,8 @@ for i in range(len(varArr)):
     label = Label(root, text=myLabel[i],
                   background='#06283D', foreground='#DFF6FF')
     xPlace = 10 if i <= 5 else (10 if i <= 11 else 290)
-    yPlace = i*40 if i <= 5 else (i*40 if i <= 11 else (i-6)*40)
-    label.place(x=xPlace, y=yPlace, width=160, height=35)
+    yPlace = i*35 if i <= 5 else (i*35 if i <= 11 else (i-6)*35)
+    label.place(x=xPlace, y=yPlace, width=160, height=30)
 
     var = StringVar(root, value='')
 
@@ -146,7 +146,7 @@ for i in range(len(varArr)):
 
     xPlace = 180 if i <= 5 else (180 if i <= 11 else 460)
     wPlace = 380 if i <= 5 else 100
-    entry.place(x=xPlace, y=yPlace, width=wPlace, height=35)
+    entry.place(x=xPlace, y=yPlace, width=wPlace, height=30)
 
     if i == 0 or i == 2 or i == 4:
         var.trace('w', lambda var, index, mode,
@@ -168,15 +168,15 @@ saveStatusVar.set('Started')
 
 saveStatus = Label(root, textvariable=saveStatusVar,
                    background='#06283D', foreground='#DFF6FF')
-saveStatus.place(x=10, y=480, width=550, height=20)
+saveStatus.place(x=10, y=420, width=550, height=20)
 
 calculateBtn = Button(root, text="Calculate", background='#06283D',
                       foreground='#EC994B', borderwidth=2, relief="groove",
                       padx=5, pady=5, command=getInput)
-calculateBtn.place(x=290, y=440, width=270, height=35)
+calculateBtn.place(x=290, y=385, width=270, height=30)
 
 root.title('Liner_Calculation')
-root.geometry('570x630')
+root.geometry('570x600')
 root.configure(bg='#000')
 
 root.resizable(False, False)
